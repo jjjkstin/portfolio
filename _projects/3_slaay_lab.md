@@ -13,3 +13,5 @@ From June to December 2024, I was a research intern for Dr. Sei Eun Kim at **The
 - Conducted literature reviews and synthesized findings to inform the research design.
 - Assisted with participant recruitment and with developing study protocols, surveys, and interview guides.
 - Supported quantitative research in **R**, collaborating with graduate students and faculty.
+
+**Reference:** [The SLAAY Lab](https://www.theslaaylab.com/)
