@@ -1,0 +1,60 @@
+// Site-specific style overrides.
+// Fonts are loaded from Google Fonts via `third_party_libraries.google_fonts` in _config.yml.
+
+$font-body:
+  "Inter",
+  system-ui,
+  -apple-system,
+  "Segoe UI",
+  sans-serif;
+$font-heading: "Source Serif 4", Georgia, "Times New Roman", serif;
+
+body {
+  font-family: $font-body;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.post-title,
+.card-title,
+.navbar-brand {
+  font-family: $font-heading;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+// Name on the About page and in the navbar
+.post-title .font-weight-bold,
+.navbar-brand .font-weight-bold {
+  font-weight: 650;
+}
+
+// Keep UI elements (nav links, buttons, badges) in the sans-serif
+.nav-link,
+.btn,
+.badge,
+.abbr {
+  font-family: $font-body;
+}
+
+// Info lines under the profile photo: body font, one item per line
+.profile .more-info {
+  font-family: $font-body;
+  font-size: 0.95rem;
+  color: var(--global-text-color-light);
+
+  p {
+    display: block;
+  }
+}
+
+// Serif titles read larger, so tone down project card titles
+.card-title {
+  font-size: 1.6rem;
+}
