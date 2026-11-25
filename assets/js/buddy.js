@@ -6,7 +6,6 @@
   window.__tigerBuddy = true;
 
   var STORAGE_KEY = "buddyHidden";
-  var LINES = ["Rawr! 🐯", "Hi there! 👋", "Side quest?", "∞ things left to learn", "Check out Koread!", "Go Tigers!"];
   var SPEED = 40; // px per second
   var PX = 2; // screen pixels per art pixel
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -76,15 +75,10 @@
   var root = document.createElement("div");
   root.className = "tiger";
 
-  var body = document.createElement("button");
-  body.type = "button";
+  var body = document.createElement("span");
   body.className = "tiger-body";
-  body.setAttribute("aria-label", "Say hi to the tiger");
+  body.setAttribute("aria-hidden", "true");
   body.innerHTML = '<span class="tiger-sprite">' + FRAME_A + FRAME_B + "</span>";
-
-  var bubble = document.createElement("span");
-  bubble.className = "tiger-bubble";
-  bubble.setAttribute("role", "status");
 
   var hideBtn = document.createElement("button");
   hideBtn.type = "button";
@@ -94,7 +88,6 @@
 
   root.appendChild(body);
   root.appendChild(hideBtn);
-  root.appendChild(bubble);
 
   var restore = document.createElement("button");
   restore.type = "button";
@@ -112,7 +105,6 @@
   var lastT = null;
   var rafId = null;
   var idleTimer = null;
-  var bubbleTimer = null;
 
   function maxX() {
     return Math.max(0, nav.clientWidth - W - 8);
@@ -161,13 +153,13 @@
     idleTimer = setTimeout(pickTarget, 2500 + Math.random() * 5000);
   }
 
-  function hop(big) {
-    root.classList.remove("is-hopping", "is-jumping");
+  function hop() {
+    root.classList.remove("is-hopping");
     void root.offsetWidth;
-    root.classList.add(big ? "is-jumping" : "is-hopping");
+    root.classList.add("is-hopping");
   }
   root.addEventListener("animationend", function (e) {
-    if (e.animationName === "tiger-hop" || e.animationName === "tiger-jump") root.classList.remove("is-hopping", "is-jumping");
+    if (e.animationName === "tiger-hop") root.classList.remove("is-hopping");
   });
 
   function stop() {
@@ -183,24 +175,9 @@
   }
 
   // ---- Interactions ---------------------------------------------------------
-  body.addEventListener("click", function () {
-    var line = LINES[Math.floor(Math.random() * LINES.length)];
-    if (line === bubble.textContent) line = LINES[(LINES.indexOf(line) + 1) % LINES.length];
-    bubble.textContent = line;
-    var mid = x + W / 2;
-    root.classList.toggle("bubble-left", mid > nav.clientWidth - 110);
-    root.classList.toggle("bubble-right", mid < 110);
-    root.classList.add("is-talking");
-    clearTimeout(bubbleTimer);
-    bubbleTimer = setTimeout(function () {
-      root.classList.remove("is-talking");
-    }, 2200);
-    if (!reduceMotion) hop(true);
-  });
 
   function hide() {
     stop();
-    root.classList.remove("is-talking");
     root.hidden = true;
     restore.hidden = false;
     storageSet(true);
