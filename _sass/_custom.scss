@@ -238,7 +238,9 @@ $timeline-gap: 2rem;
     bottom: 0.4rem;
     left: calc(#{$timeline-date-width} + #{$timeline-gap} / 2);
     width: 2px;
-    background: var(--global-divider-color);
+    border-radius: 2px;
+    // fades from the accent color (newest) to a soft grey (oldest)
+    background: linear-gradient(to bottom, var(--global-theme-color), var(--global-divider-color) 85%);
   }
 }
 
@@ -263,11 +265,16 @@ $timeline-gap: 2rem;
     border: 2px solid var(--global-theme-color);
     border-radius: 50%;
     background: var(--global-bg-color);
-    transition: background 0.15s;
+    // soft glow around each dot
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--global-theme-color) 14%, transparent);
+    transition:
+      background 0.15s,
+      box-shadow 0.15s;
   }
   &:hover::before,
   &:focus-within::before {
     background: var(--global-theme-color);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--global-theme-color) 22%, transparent);
   }
 }
 
@@ -298,6 +305,7 @@ $timeline-gap: 2rem;
 // Each entry is a faint card that lifts on hover (the whole card is the link)
 .timeline-card {
   display: block;
+  cursor: pointer;
   margin-top: -0.75rem; // keep the title aligned with the date and dot
   padding: 0.75rem 1rem 0.85rem;
   border: 1px solid transparent;
