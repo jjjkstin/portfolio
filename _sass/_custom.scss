@@ -91,3 +91,8 @@ h6,
   font-size: 0.9rem;
   color: var(--global-text-color-light);
 }
+
+// The ∞ glyph renders small in Source Serif; scale it to match the numbers
+.stat-num[data-final]:not(.is-counting) {
+  transform: scale(1.6);
+}

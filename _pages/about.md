@@ -39,9 +39,9 @@ I speak English and Korean (bilingual) and Spanish (advanced).
 
 <div class="impact-stats">
   <div class="stat"><span class="stat-num" data-target="40000" data-suffix="+">40,000+</span><span class="stat-label">Koread views</span></div>
-  <div class="stat"><span class="stat-num" data-target="18">18</span><span class="stat-label">team members led</span></div>
-  <div class="stat"><span class="stat-num" data-target="3">3</span><span class="stat-label">continents</span></div>
+  <div class="stat"><span class="stat-num" data-target="30" data-suffix="+">30+</span><span class="stat-label">students mentored</span></div>
   <div class="stat"><span class="stat-num" data-target="2">2</span><span class="stat-label">publications</span></div>
+  <div class="stat"><span class="stat-num" data-target="9999" data-final="∞">∞</span><span class="stat-label">things left to learn</span></div>
 </div>
 
 <script>
@@ -55,6 +55,7 @@ I speak English and Korean (bilingual) and Spanish (advanced).
     }
     nums.forEach(function (el) {
       el.setAttribute("aria-label", el.textContent);
+      if (el.dataset.final) el.classList.add("is-counting");
       render(el, 0);
     });
     var io = new IntersectionObserver(
@@ -67,7 +68,12 @@ I speak English and Korean (bilingual) and Spanish (advanced).
           var p = Math.min((t - start) / 1200, 1);
           var eased = 1 - Math.pow(1 - p, 3);
           nums.forEach(function (el) {
-            render(el, eased * Number(el.dataset.target));
+            // data-final swaps in a non-numeric ending (the ∞ joke) once counting finishes
+            if (p === 1 && el.dataset.final) {
+              el.textContent = el.dataset.final;
+              el.classList.remove("is-counting");
+            }
+            else render(el, eased * Number(el.dataset.target));
           });
           if (p < 1) requestAnimationFrame(frame);
         }
