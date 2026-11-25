@@ -31,6 +31,8 @@ Hi, I'm JaeHa (Justin) Kim, a member of Princeton University's Class of 2030 and
 
 I'm interested in how data and policy intersect, especially around immigrant communities, identity, and mental health. As a research intern at the CHAMP Lab at Teachers College, Columbia University, and the SLAAY Lab at Montclair State University, I studied the experiences of Asian American and Latino youth and families, using R for quantitative analysis. That work led to a coauthored peer-reviewed paper on racial discrimination, resilience, and mental health among Asian American youth, and to my own case study of a DACA recipient's journey in the United States.
 
-Outside the classroom, I founded and led **Koread**, a Korean-American news platform with 18 team members across three continents, covering political, economic, and cultural issues. At Princeton, I'm involved with the Whitman College Council, the James Madison Program UFF, the _Nassau Weekly_ (copy editor), Christian Union Nova (praise team), and WaWa United Soccer.
+Looking ahead, I'm especially interested in **AI governance and AI policymaking**. I'm currently writing an independent paper on AI-generated animation and what it means for art, including the emotional value of AI-generated artworks in the future.
+
+Outside the classroom, I founded and led **Koread**, a Korean-American news platform with 18 team members across three continents. At Princeton, I'm on the Whitman College Council, copy edit for the _Nassau Weekly_, and take part in the James Madison Program UFF, Christian Union Nova, and WaWa United Soccer.
 
 I speak English and Korean (bilingual) and Spanish (advanced).
