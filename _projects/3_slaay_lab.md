@@ -1,8 +1,9 @@
 ---
 layout: page
 title: Navigating Race Project
-description: Research Intern, The SLAAY Lab, Montclair State University (2024)
-img: assets/img/projects/navigating.jpg
+description: Research Intern, The SLAAY Lab, Montclair State University
+start: "2024-06"
+when: "2024"
 importance: 2
 category: research
 ---

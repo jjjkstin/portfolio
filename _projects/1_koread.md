@@ -1,8 +1,9 @@
 ---
 layout: page
 title: Koread
-description: Founder & Executive Director of a youth-led Korean-American media platform (2023–2026)
-img: assets/img/projects/koread.jpg
+description: Founder & Executive Director of a youth-led Korean-American media platform
+start: "2023-01"
+when: "2023 – 2026"
 importance: 1
 category: leadership
 ---

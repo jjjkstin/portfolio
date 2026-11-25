@@ -1,8 +1,9 @@
 ---
 layout: page
 title: AI-Generated Animation & Art
-description: Independent research paper, in progress (2026)
-img: assets/img/projects/ai.jpg
+description: Independent research paper, in progress
+start: "2026-01"
+when: "2026"
 importance: 0
 category: research
 ---

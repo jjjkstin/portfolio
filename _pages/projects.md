@@ -5,61 +5,23 @@ permalink: /projects/
 description: Ventures, research, and other work I have led or contributed to.
 nav: true
 nav_order: 2
-display_categories: [leadership, research]
-horizontal: false
 ---
 
-<!-- pages/projects.md -->
-<div class="projects">
-{% if site.enable_project_categories and page.display_categories %}
-  <!-- Display categorized projects -->
-  {% for category in page.display_categories %}
-  <a id="{{ category }}" href=".#{{ category }}">
-    <h2 class="category">{{ category }}</h2>
-  </a>
-  {% assign categorized_projects = site.projects | where: "category", category %}
-  {% assign sorted_projects = categorized_projects | sort: "importance" %}
-  <!-- Generate cards for each project -->
-  {% if page.horizontal %}
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
-    </div>
-  </div>
-  {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-  {% endif %}
+<!-- pages/projects.md: vertical timeline, newest first (styles in _sass/_custom.scss) -->
+
+{% assign items = site.projects | sort: "start" | reverse %}
+
+<ol class="timeline">
+  {% for project in items %}
+    <li class="timeline-item">
+      <div class="timeline-date">{{ project.when }}</div>
+      <div class="timeline-content">
+        <h3 class="timeline-title">
+          <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+        </h3>
+        <p class="timeline-desc">{{ project.description }}</p>
+        <span class="timeline-tag">{{ project.category }}</span>
+      </div>
+    </li>
   {% endfor %}
-
-{% else %}
-
-<!-- Display projects without categories -->
-
-{% assign sorted_projects = site.projects | sort: "importance" %}
-
-  <!-- Generate cards for each project -->
-
-{% if page.horizontal %}
-
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
-    </div>
-  </div>
-  {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-  {% endif %}
-{% endif %}
-</div>
+</ol>

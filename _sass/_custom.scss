@@ -54,11 +54,6 @@ h6,
   }
 }
 
-// Serif titles read larger, so tone down project card titles
-.card-title {
-  font-size: 1.6rem;
-}
-
 // Impact stats row on the About page (count-up script lives in _pages/about.md)
 .impact-stats {
   display: grid;
@@ -220,5 +215,123 @@ h6,
     width: 15px;
     height: 21px;
     image-rendering: pixelated;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Projects timeline (markup: _pages/projects.md)
+// ---------------------------------------------------------------------------
+$timeline-date-width: 6.5rem;
+$timeline-gap: 2rem;
+
+.timeline {
+  position: relative;
+  margin: 2.5rem 0 1rem;
+  padding: 0;
+  list-style: none;
+
+  // vertical line
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0.4rem;
+    bottom: 0.4rem;
+    left: calc(#{$timeline-date-width} + #{$timeline-gap} / 2);
+    width: 2px;
+    background: var(--global-divider-color);
+  }
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  gap: $timeline-gap;
+  padding-bottom: 2.25rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  // dot
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0.45rem;
+    left: calc(#{$timeline-date-width} + #{$timeline-gap} / 2 - 6px);
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--global-theme-color);
+    border-radius: 50%;
+    background: var(--global-bg-color);
+    transition: background 0.15s;
+  }
+  &:hover::before {
+    background: var(--global-theme-color);
+  }
+}
+
+.timeline-date {
+  flex: 0 0 $timeline-date-width;
+  padding-top: 0.2rem;
+  text-align: right;
+  font-family: $font-body;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--global-text-color-light);
+  white-space: nowrap;
+}
+
+.timeline-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.timeline-title {
+  margin: 0 0 0.3rem;
+  font-size: 1.4rem;
+  line-height: 1.25;
+
+  a {
+    color: var(--global-text-color);
+  }
+  a:hover {
+    color: var(--global-theme-color);
+    text-decoration: none;
+  }
+}
+
+.timeline-desc {
+  margin: 0 0 0.5rem;
+  color: var(--global-text-color);
+}
+
+.timeline-tag {
+  display: inline-block;
+  padding: 0.05rem 0.55rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--global-text-color-light);
+  text-transform: lowercase;
+}
+
+@media (max-width: 575.98px) {
+  .timeline::before {
+    left: 6px;
+  }
+  .timeline-item {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-left: 2rem;
+
+    &::before {
+      left: 0;
+      top: 0.2rem;
+    }
+  }
+  .timeline-date {
+    flex: none;
+    text-align: left;
+    padding-top: 0;
   }
 }

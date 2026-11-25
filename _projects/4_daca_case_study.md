@@ -1,8 +1,9 @@
 ---
 layout: page
 title: DACA Case Study
-description: Independent research on resilience and identity among DACA recipients (2025)
-img: assets/img/projects/daca.jpg
+description: Independent research on resilience and identity among DACA recipients
+start: "2025-01"
+when: "2025"
 importance: 3
 category: research
 related_publications: true

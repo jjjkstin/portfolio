@@ -1,8 +1,9 @@
 ---
 layout: page
 title: Asian American Youth & Mental Health
-description: Research Intern, CHAMP Lab, Teachers College, Columbia University (2024)
-img: assets/img/projects/youth.jpg
+description: Research Intern, CHAMP Lab, Teachers College, Columbia University
+start: "2024-04"
+when: "2024"
 importance: 1
 category: research
 related_publications: true
