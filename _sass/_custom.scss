@@ -96,3 +96,237 @@ h6,
 .stat-num[data-final]:not(.is-counting) {
   transform: scale(1.6);
 }
+
+// ---------------------------------------------------------------------------
+// Smiley buddy: roaming avatar (script: assets/js/buddy.js)
+// ---------------------------------------------------------------------------
+.buddy {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 1010; // above page content, below the fixed navbar/footer (1030)
+  width: 44px;
+  pointer-events: none;
+  will-change: transform;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.buddy-body {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transform: scaleX(var(--buddy-facing, 1));
+
+  &:focus-visible {
+    outline: 2px solid var(--global-theme-color);
+    outline-offset: 3px;
+    border-radius: 50%;
+  }
+}
+
+.buddy-figure {
+  position: relative;
+  display: block;
+  width: 44px;
+  height: 54px; // body + legs
+
+  img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 44px;
+    height: 44px;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
+    user-select: none;
+  }
+}
+
+.buddy-leg {
+  position: absolute;
+  top: 38px;
+  width: 5px;
+  height: 14px;
+  border-radius: 3px;
+  background: #3a2a10;
+  transform-origin: top center;
+
+  &.buddy-leg-l {
+    left: 14px;
+  }
+  &.buddy-leg-r {
+    right: 14px;
+  }
+}
+
+.buddy.is-walking {
+  .buddy-leg-l {
+    animation: buddy-step 0.36s ease-in-out infinite alternate;
+  }
+  .buddy-leg-r {
+    animation: buddy-step 0.36s ease-in-out infinite alternate-reverse;
+  }
+  .buddy-figure img {
+    animation: buddy-bob 0.18s ease-in-out infinite alternate;
+  }
+}
+
+.buddy.is-hopping .buddy-figure {
+  animation: buddy-hop 0.45s ease-out;
+}
+.buddy.is-jumping .buddy-figure {
+  animation: buddy-jump 0.6s cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+@keyframes buddy-step {
+  from {
+    transform: rotate(-22deg);
+  }
+  to {
+    transform: rotate(22deg);
+  }
+}
+@keyframes buddy-bob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-2px);
+  }
+}
+@keyframes buddy-hop {
+  40% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes buddy-jump {
+  35% {
+    transform: translateY(-26px) rotate(-8deg);
+  }
+  70% {
+    transform: translateY(0) scale(1.06, 0.92);
+  }
+}
+
+// Speech bubble
+.buddy-bubble {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  padding: 0.3rem 0.65rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--global-divider-color);
+  background: var(--global-bg-color);
+  color: var(--global-text-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-family: $font-body;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition:
+    opacity 0.15s,
+    transform 0.15s;
+  pointer-events: none;
+}
+.buddy.is-talking .buddy-bubble {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.buddy.bubble-left .buddy-bubble {
+  left: auto;
+  right: 0;
+  transform: translate(0, 4px);
+}
+.buddy.bubble-left.is-talking .buddy-bubble {
+  transform: translate(0, 0);
+}
+.buddy.bubble-right .buddy-bubble {
+  left: 0;
+  transform: translate(0, 4px);
+}
+.buddy.bubble-right.is-talking .buddy-bubble {
+  transform: translate(0, 0);
+}
+
+// Hide (×) button: appears on hover or keyboard focus
+.buddy-hide {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 50%;
+  background: var(--global-bg-color);
+  color: var(--global-text-color);
+  font-size: 13px;
+  line-height: 15px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: auto;
+  transition: opacity 0.15s;
+}
+.buddy:hover .buddy-hide,
+.buddy:focus-within .buddy-hide {
+  opacity: 1;
+}
+
+// Small chip to bring the buddy back after hiding it
+.buddy-restore {
+  position: fixed;
+  left: 10px;
+  bottom: 8px;
+  z-index: 1010;
+  padding: 3px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  opacity: 0.45;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+  &[hidden] {
+    display: none;
+  }
+  img {
+    display: block;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .buddy,
+  .buddy-figure,
+  .buddy-figure img {
+    width: 34px;
+  }
+  .buddy-figure {
+    height: 42px;
+  }
+  .buddy-figure img {
+    height: 34px;
+  }
+  .buddy-leg {
+    top: 29px;
+    width: 4px;
+    height: 11px;
+  }
+  .buddy-leg.buddy-leg-l {
+    left: 11px;
+  }
+  .buddy-leg.buddy-leg-r {
+    right: 11px;
+  }
+}
