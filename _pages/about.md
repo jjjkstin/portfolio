@@ -36,3 +36,45 @@ Looking ahead, I'm especially interested in **AI governance and AI policymaking*
 Outside the classroom, I founded and led **Koread**, a Korean-American news platform with 18 team members across three continents. At Princeton, I'm on the Whitman College Council, copy edit for the _Nassau Weekly_, and take part in the James Madison Program UFF, Christian Union Nova, and WaWa United Soccer.
 
 I speak English and Korean (bilingual) and Spanish (advanced).
+
+<div class="impact-stats">
+  <div class="stat"><span class="stat-num" data-target="40000" data-suffix="+">40,000+</span><span class="stat-label">Koread views</span></div>
+  <div class="stat"><span class="stat-num" data-target="18">18</span><span class="stat-label">team members led</span></div>
+  <div class="stat"><span class="stat-num" data-target="3">3</span><span class="stat-label">continents</span></div>
+  <div class="stat"><span class="stat-num" data-target="2">2</span><span class="stat-label">publications</span></div>
+</div>
+
+<script>
+  // Count the impact stats up once when they scroll into view (styles in _sass/_custom.scss)
+  (function () {
+    var row = document.querySelector(".impact-stats");
+    if (!row || !("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var nums = row.querySelectorAll(".stat-num");
+    function render(el, v) {
+      el.textContent = Math.round(v).toLocaleString("en-US") + (el.dataset.suffix || "");
+    }
+    nums.forEach(function (el) {
+      el.setAttribute("aria-label", el.textContent);
+      render(el, 0);
+    });
+    var io = new IntersectionObserver(
+      function (entries) {
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        var start = null;
+        function frame(t) {
+          if (start === null) start = t;
+          var p = Math.min((t - start) / 1200, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          nums.forEach(function (el) {
+            render(el, eased * Number(el.dataset.target));
+          });
+          if (p < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      },
+      { threshold: 0.4 }
+    );
+    io.observe(row);
+  })();
+</script>
