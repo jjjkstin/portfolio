@@ -33,9 +33,11 @@ I'm interested in how data and policy intersect, especially around immigrant com
 
 Looking ahead, I'm especially interested in **AI governance and AI policymaking**. I'm currently writing an independent paper on AI-generated animation and what it means for art, including the emotional value of AI-generated artworks in the future.
 
-Outside the classroom, I founded and led **Koread**, a Korean-American news platform with 18 team members across three continents. At Princeton, I'm on the Whitman College Council, copy edit for the _Nassau Weekly_, and take part in the James Madison Program UFF, Christian Union Nova, and WaWa United Soccer.
+Outside the classroom, I founded and led **Koread**, a Korean-American news platform with 18 team members across three continents. At Princeton, I'm on the Whitman College Council, copy edit for the _Nassau Weekly_, and take part in the James Madison Program UFF, Christian Union Nova, and WaWa United Soccer. I've also mentored students in SAT and college prep, as well as in violin and music production.
 
 I speak English and Korean (bilingual) and Spanish (advanced).
+
+Outside of academics, you'll find me playing soccer and volleyball, DJing, or heading off on spontaneous side quests.
 
 <div class="impact-stats">
   <div class="stat"><span class="stat-num" data-target="40000" data-suffix="+">40,000+</span><span class="stat-label">Koread views</span></div>
