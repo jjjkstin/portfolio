@@ -98,14 +98,15 @@ h6,
 }
 
 // ---------------------------------------------------------------------------
-// Smiley buddy: roaming avatar (script: assets/js/buddy.js)
+// Pixel tiger: walks along the line under the navbar (script: assets/js/buddy.js)
 // ---------------------------------------------------------------------------
-.buddy {
-  position: fixed;
+.tiger {
+  position: absolute;
   left: 0;
-  bottom: 0;
-  z-index: 1010; // above page content, below the fixed navbar/footer (1030)
-  width: 44px;
+  bottom: 0; // feet rest on the navbar's bottom border
+  z-index: 2;
+  width: 32px;
+  height: 22px;
   pointer-events: none;
   will-change: transform;
 
@@ -114,183 +115,151 @@ h6,
   }
 }
 
-.buddy-body {
+.tiger-body {
   display: block;
   padding: 0;
   border: 0;
   background: none;
+  line-height: 0;
   cursor: pointer;
   pointer-events: auto;
-  transform: scaleX(var(--buddy-facing, 1));
+  transform: scaleX(var(--tiger-facing, 1));
 
   &:focus-visible {
     outline: 2px solid var(--global-theme-color);
-    outline-offset: 3px;
-    border-radius: 50%;
+    outline-offset: 2px;
   }
 }
 
-.buddy-figure {
+.tiger-sprite {
   position: relative;
   display: block;
-  width: 44px;
-  height: 54px; // body + legs
+  width: 32px;
+  height: 22px;
 
-  img {
-    position: relative;
-    z-index: 1;
-    display: block;
-    width: 44px;
-    height: 44px;
-    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
-    user-select: none;
+  svg {
+    position: absolute;
+    inset: 0;
+    image-rendering: pixelated;
   }
 }
 
-.buddy-leg {
-  position: absolute;
-  top: 38px;
-  width: 5px;
-  height: 14px;
-  border-radius: 3px;
-  background: #3a2a10;
-  transform-origin: top center;
-
-  &.buddy-leg-l {
-    left: 14px;
+// Two-frame walk cycle: swap leg frames while walking
+.tiger-frame-b {
+  visibility: hidden;
+}
+.tiger.is-walking {
+  .tiger-frame-a {
+    animation: tiger-frame-a 0.3s steps(1) infinite;
   }
-  &.buddy-leg-r {
-    right: 14px;
+  .tiger-frame-b {
+    animation: tiger-frame-b 0.3s steps(1) infinite;
+  }
+}
+@keyframes tiger-frame-a {
+  50% {
+    visibility: hidden;
+  }
+}
+@keyframes tiger-frame-b {
+  50% {
+    visibility: visible;
   }
 }
 
-.buddy.is-walking {
-  .buddy-leg-l {
-    animation: buddy-step 0.36s ease-in-out infinite alternate;
-  }
-  .buddy-leg-r {
-    animation: buddy-step 0.36s ease-in-out infinite alternate-reverse;
-  }
-  .buddy-figure img {
-    animation: buddy-bob 0.18s ease-in-out infinite alternate;
+.tiger.is-hopping .tiger-sprite {
+  animation: tiger-hop 0.4s steps(4);
+}
+.tiger.is-jumping .tiger-sprite {
+  animation: tiger-jump 0.5s steps(5);
+}
+@keyframes tiger-hop {
+  50% {
+    transform: translateY(-6px);
   }
 }
-
-.buddy.is-hopping .buddy-figure {
-  animation: buddy-hop 0.45s ease-out;
-}
-.buddy.is-jumping .buddy-figure {
-  animation: buddy-jump 0.6s cubic-bezier(0.3, 0.7, 0.4, 1);
-}
-
-@keyframes buddy-step {
-  from {
-    transform: rotate(-22deg);
-  }
-  to {
-    transform: rotate(22deg);
-  }
-}
-@keyframes buddy-bob {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-2px);
-  }
-}
-@keyframes buddy-hop {
+@keyframes tiger-jump {
   40% {
-    transform: translateY(-10px);
-  }
-}
-@keyframes buddy-jump {
-  35% {
-    transform: translateY(-26px) rotate(-8deg);
-  }
-  70% {
-    transform: translateY(0) scale(1.06, 0.92);
+    transform: translateY(-12px);
   }
 }
 
-// Speech bubble
-.buddy-bubble {
+// Speech bubble, shown just below the navbar line
+.tiger-bubble {
   position: absolute;
-  bottom: calc(100% + 6px);
+  top: calc(100% + 8px);
   left: 50%;
-  padding: 0.3rem 0.65rem;
-  border-radius: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.6rem;
   border: 1px solid var(--global-divider-color);
   background: var(--global-bg-color);
   color: var(--global-text-color);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   font-family: $font-body;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
   white-space: nowrap;
   opacity: 0;
-  transform: translate(-50%, 4px);
+  transform: translate(-50%, -4px);
   transition:
     opacity 0.15s,
     transform 0.15s;
   pointer-events: none;
 }
-.buddy.is-talking .buddy-bubble {
+.tiger.is-talking .tiger-bubble {
   opacity: 1;
   transform: translate(-50%, 0);
 }
-.buddy.bubble-left .buddy-bubble {
+.tiger.bubble-left .tiger-bubble {
   left: auto;
   right: 0;
-  transform: translate(0, 4px);
+  transform: translate(0, -4px);
 }
-.buddy.bubble-left.is-talking .buddy-bubble {
-  transform: translate(0, 0);
-}
-.buddy.bubble-right .buddy-bubble {
+.tiger.bubble-right .tiger-bubble {
   left: 0;
-  transform: translate(0, 4px);
+  transform: translate(0, -4px);
 }
-.buddy.bubble-right.is-talking .buddy-bubble {
+.tiger.bubble-left.is-talking .tiger-bubble,
+.tiger.bubble-right.is-talking .tiger-bubble {
   transform: translate(0, 0);
 }
 
 // Hide (×) button: appears on hover or keyboard focus
-.buddy-hide {
+.tiger-hide {
   position: absolute;
-  top: -6px;
-  right: -8px;
-  z-index: 2;
-  width: 18px;
-  height: 18px;
+  top: -8px;
+  right: -12px;
+  width: 14px;
+  height: 14px;
   padding: 0;
   border: 1px solid var(--global-divider-color);
   border-radius: 50%;
   background: var(--global-bg-color);
   color: var(--global-text-color);
-  font-size: 13px;
-  line-height: 15px;
+  font-size: 11px;
+  line-height: 11px;
   text-align: center;
   cursor: pointer;
   opacity: 0;
   pointer-events: auto;
   transition: opacity 0.15s;
 }
-.buddy:hover .buddy-hide,
-.buddy:focus-within .buddy-hide {
+.tiger:hover .tiger-hide,
+.tiger:focus-within .tiger-hide {
   opacity: 1;
 }
 
-// Small chip to bring the buddy back after hiding it
-.buddy-restore {
-  position: fixed;
-  left: 10px;
-  bottom: 8px;
-  z-index: 1010;
-  padding: 3px;
+// Small tiger face (at the right end of the navbar line) to bring the tiger back
+.tiger-restore {
+  position: absolute;
+  right: 6px;
+  bottom: 0;
+  z-index: 2;
+  padding: 0;
   border: 0;
-  border-radius: 50%;
   background: none;
-  opacity: 0.45;
+  line-height: 0;
+  opacity: 0.7;
   cursor: pointer;
   transition: opacity 0.15s;
 
@@ -301,32 +270,9 @@ h6,
   &[hidden] {
     display: none;
   }
-  img {
-    display: block;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .buddy,
-  .buddy-figure,
-  .buddy-figure img {
-    width: 34px;
-  }
-  .buddy-figure {
-    height: 42px;
-  }
-  .buddy-figure img {
-    height: 34px;
-  }
-  .buddy-leg {
-    top: 29px;
-    width: 4px;
-    height: 11px;
-  }
-  .buddy-leg.buddy-leg-l {
-    left: 11px;
-  }
-  .buddy-leg.buddy-leg-r {
-    right: 11px;
+  svg {
+    width: 15px;
+    height: 21px;
+    image-rendering: pixelated;
   }
 }
