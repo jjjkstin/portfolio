@@ -405,3 +405,21 @@ $timeline-gap: 2rem;
     padding-top: 0.35rem;
   }
 }
+
+// ---------------------------------------------------------------------------
+// Page headings (Projects, Publications, CV, project pages): bold sans, capitalized.
+// The About page heading (your name, which contains .font-weight-bold) keeps the serif.
+// ---------------------------------------------------------------------------
+.post-header .post-title:not(:has(.font-weight-bold)) {
+  font-family: $font-body;
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  text-transform: capitalize;
+}
+
+@media (max-width: 575.98px) {
+  .post-header .post-title:not(:has(.font-weight-bold)) {
+    font-size: 2rem;
+  }
+}
