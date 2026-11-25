@@ -15,13 +15,14 @@ nav_order: 2
   {% for project in items %}
     <li class="timeline-item">
       <div class="timeline-date">{{ project.when }}</div>
-      <div class="timeline-content">
-        <h3 class="timeline-title">
-          <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-        </h3>
+      <a class="timeline-content timeline-card" href="{{ project.url | relative_url }}">
+        <h3 class="timeline-title">{{ project.title }}</h3>
         <p class="timeline-desc">{{ project.description }}</p>
-        <span class="timeline-tag">{{ project.category }}</span>
-      </div>
+        <div class="timeline-footer">
+          <span class="timeline-tag">{{ project.category }}</span>
+          <span class="timeline-more" aria-hidden="true">Read more →</span>
+        </div>
+      </a>
     </li>
   {% endfor %}
 </ol>
