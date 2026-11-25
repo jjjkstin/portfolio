@@ -1,0 +1,27 @@
+---
+layout: none
+permalink: /cv/
+title: CV
+nav: true
+nav_order: 5
+sitemap: false
+---
+
+{% assign pdf = "/assets/pdf/JaeHa_Justin_Kim_Resume.pdf" | relative_url %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CV | JaeHa (Justin) Kim</title>
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content="0; url={{ pdf }}" />
+    <link rel="canonical" href="{{ pdf }}" />
+    <script>
+      window.location.replace("{{ pdf }}");
+    </script>
+  </head>
+  <body>
+    <p>Opening my CV… If nothing happens, <a href="{{ pdf }}">open the PDF</a>.</p>
+  </body>
+</html>
