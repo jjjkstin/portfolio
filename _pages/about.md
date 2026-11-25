@@ -2,10 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: >-
-  <a href='https://www.princeton.edu/'>Princeton</a> '30 ·
-  <span class="tagline" aria-hidden="true">Public &amp; International Affairs</span><span class="tagline-cursor" aria-hidden="true"></span>
-  <span class="sr-only">Public and International Affairs, Statistics and Machine Learning, AI governance and policy, researcher, and founder of Koread</span>
+subtitle: Public and International Affairs + Machine Learning @ <a href='https://www.princeton.edu/'>Princeton University</a>
 
 profile:
   align: right
@@ -39,29 +36,3 @@ Looking ahead, I'm especially interested in **AI governance and AI policymaking*
 Outside the classroom, I founded and led **Koread**, a Korean-American news platform with 18 team members across three continents. At Princeton, I'm on the Whitman College Council, copy edit for the _Nassau Weekly_, and take part in the James Madison Program UFF, Christian Union Nova, and WaWa United Soccer.
 
 I speak English and Korean (bilingual) and Spanish (advanced).
-
-<script>
-  // Rotating typewriter tagline under the name (see .tagline in _sass/_custom.scss)
-  (function () {
-    var el = document.querySelector(".tagline");
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    var phrases = [
-      "Public & International Affairs",
-      "Statistics & Machine Learning",
-      "AI governance & policy",
-      "Social science researcher",
-      "Founder of Koread",
-    ];
-    var i = 0, n = phrases[0].length, deleting = true;
-    function tick() {
-      var text = phrases[i];
-      n += deleting ? -1 : 1;
-      el.textContent = text.slice(0, n);
-      var delay = deleting ? 35 : 70;
-      if (!deleting && n === text.length) { deleting = true; delay = 2200; }
-      else if (deleting && n === 0) { deleting = false; i = (i + 1) % phrases.length; text = phrases[i]; delay = 350; }
-      setTimeout(tick, delay);
-    }
-    setTimeout(tick, 2500);
-  })();
-</script>
