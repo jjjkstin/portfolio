@@ -58,3 +58,31 @@ h6,
 .card-title {
   font-size: 1.6rem;
 }
+
+// Rotating typewriter tagline on the About page
+.tagline {
+  font-weight: 500;
+  color: var(--global-theme-color);
+}
+
+.tagline-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--global-theme-color);
+  animation: tagline-blink 1s step-end infinite;
+}
+
+@keyframes tagline-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tagline-cursor {
+    display: none;
+  }
+}
